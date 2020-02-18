@@ -5,4 +5,9 @@ from .models import ProjectStep
 class ProjectStepSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProjectStep
-        fields = '__all__'
+        fields = (
+            'id',
+            'title',
+            'description',
+            'picture',
+        )

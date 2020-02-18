@@ -18,6 +18,7 @@ current_path = os.path.dirname(os.path.abspath(__file__)).replace('/config', '')
 sys.path.append(current_path)
 sys.path.append(os.path.join(current_path, 'apps'))
 
+
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION
 # setting points here.

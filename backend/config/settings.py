@@ -7,6 +7,7 @@ https://docs.djangoproject.com/en/dev/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
+import os
 import environ
 from datetime import timedelta
 
@@ -27,7 +28,7 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    
+    'corsheaders',
     'rest_framework',
     
     'django_extensions',
@@ -44,6 +45,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # MIDDLEWARE CONFIGURATION
 # ------------------------------------------------------------------------------
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -58,6 +60,8 @@ MIDDLEWARE = [
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = env.bool('DEBUG')
 SECRET_KEY = env.str('SECRET_KEY')
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 # DOMAINS
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
@@ -135,7 +139,7 @@ STATICFILES_FINDERS = [
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
 MEDIA_ROOT = str(ROOT_DIR('media'))
-
+print(MEDIA_ROOT)
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = '/media/'
 
