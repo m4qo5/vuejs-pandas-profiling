@@ -23,8 +23,8 @@
         />
       </div>
       <v-spacer></v-spacer>
-      <v-btn large color="primary" class="ml-5">Sign Up</v-btn>
-      <v-btn large color="primary" class="ml-5">Sign In</v-btn>
+      <v-btn large color="dark" class="ml-4">Sign Up</v-btn>
+      <v-btn large color="dark" class="ml-4">Sign In</v-btn>
       
     </v-app-bar>
 </template>
