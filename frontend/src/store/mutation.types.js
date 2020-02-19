@@ -1,2 +1,5 @@
 export const SET_LOADING = 'SET_LOADING'
 export const SET_STEPS = 'SET_STEPS'
+export const SET_TOKEN = 'SET_TOKEN'
+export const SET_CURRENT_USER = 'SET_CURRENT_USER'
+export const PURGE_TOKEN = 'PURGE_TOKEN'
