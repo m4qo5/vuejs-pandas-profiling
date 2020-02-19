@@ -1,7 +1,5 @@
 from rest_framework import serializers
-
 from django.conf import settings
-
 from apps.users.models import User
 
 
