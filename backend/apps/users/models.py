@@ -44,6 +44,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
 
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'avatar']
+
     objects = UserManager()
 
     class Meta:
