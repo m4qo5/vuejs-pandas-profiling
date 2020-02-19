@@ -17,22 +17,26 @@
       <v-spacer></v-spacer>
       <v-btn v-if="!main" to="/" text class="black--text">Back</v-btn>
       <VerticalDivider
+        v-if="!isAuthenticated"
         class="mx-2"
         vertical
         inset
         color="black"/>
-      <v-btn text class="black--text">Sign Up</v-btn>
+      <v-btn v-if="!isAuthenticated" text class="black--text">Sign Up</v-btn>
       <VerticalDivider
+        v-if="!isAuthenticated"
         class="mx-2"
         vertical
         inset
         color="black"/>
-      <v-btn to="/sign-in" text class="black--text">Sign In</v-btn>
+      <v-btn v-if="!isAuthenticated" to="/sign-in" text class="black--text">Sign In</v-btn>
+      <v-btn v-if="isAuthenticated" @click="signOut" text class="black--text">Sign Out</v-btn>
     </v-app-bar>
 </template>
 
 <script>
 import VerticalDivider from './MainPageSmallComponents/VerticalDivider'
+import { mapGetters } from "vuex";
 
 export default {
   name: 'Header',
@@ -40,9 +44,19 @@ export default {
       VerticalDivider,
   },
   computed: {
+    ...mapGetters(["isAuthenticated", "currentUser"]),
     main(){
         return this.$route.path === '/'
-    },
-}
+  }},
+  methods: {
+        async signOut() {
+            try {
+                await this.$store.dispatch("signOut");
+            }
+            catch {
+                alert("Something wrong")
+            }
+        }
+    }
 }
 </script>
