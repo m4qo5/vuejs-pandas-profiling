@@ -39,6 +39,24 @@ const steps = {
     }
 }
 
+const auth = {
+    createUser(payload) {
+        return client.post('auth/users/', {
+            name: payload.name,
+            last_name: payload.last_name,
+            email: payload.email,
+            password: payload.password
+        })
+    },
+    createToken(payload) {
+        return client.post('auth/token/', {
+            email: payload.email,
+            password: payload.password
+        })
+    },
+}
+
 export const http = {
     steps,
-  }
+    auth,
+}
