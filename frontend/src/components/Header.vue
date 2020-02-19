@@ -17,7 +17,7 @@
       <v-spacer></v-spacer>
       <v-btn v-if="!main" to="/" text class="black--text">Back</v-btn>
       <VerticalDivider
-        v-if="!isAuthenticated"
+        v-if="!isAuthenticated && !main"
         class="mx-2"
         vertical
         inset
