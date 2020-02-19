@@ -17,16 +17,16 @@
       return {
         items: [
           {
-            src: 'https://inflowanalysis.com/wp-content/uploads/2016/02/flOw_postercolor72-01.png',
+            src: require('@/assets/flow-slider-1.png'),
           },
           {
-            src: 'https://ain.ua/special/data-science/images/tild3634-3164-4337-b561-633663663261__1.jpg',
+            src: require('@/assets/flow-slider-2.jpg'),
           },
           {
-            src: 'https://miro.medium.com/max/1200/1*eDZkMx3ewFG9bim7lXE_-Q.jpeg',
+            src: require('@/assets/flow-slider-3.jpeg'),
           },
           {
-            src: 'https://theme.zdassets.com/theme_assets/727006/0f12823aa58add30640e72566822b84437a96bc2.png',
+            src: require('@/assets/flow-slider-4.png'),
           },
         ],
       }

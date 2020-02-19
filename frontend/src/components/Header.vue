@@ -23,14 +23,23 @@
         />
       </div>
       <v-spacer></v-spacer>
-      <v-btn large color="dark" class="ml-4">Sign Up</v-btn>
-      <v-btn large color="dark" class="ml-4">Sign In</v-btn>
-      
+      <v-btn text class="black--text">Sign Up</v-btn>
+      <VerticalDivider
+        class="mx-2"
+        vertical
+        inset
+        color="black"/>
+      <v-btn text class="black--text">Sign In</v-btn>
     </v-app-bar>
 </template>
 
 <script>
+import VerticalDivider from './MainPageSmallComponents/VerticalDivider'
+
 export default {
-  name: 'Header'
+  name: 'Header',
+  components: {
+      VerticalDivider,
+  }
 }
 </script>

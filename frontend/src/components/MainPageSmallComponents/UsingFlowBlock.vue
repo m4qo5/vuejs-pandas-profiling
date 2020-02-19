@@ -22,31 +22,3 @@
     </v-layout>
   </v-container>
 </template>
-
-
-<script>
-import { mapGetters } from "vuex";
-
-export default {
-  name: "WeProvideBlock",
-  computed: {
-    ...mapGetters(["steps", "stepsAreLoading"])
-  },
-  async mounted() {
-    await this.$store.dispatch("getSteps");
-  }
-};
-</script>
-
-
-<style>
-.v-card--reveal {
-  align-items: center;
-  bottom: 0;
-  justify-content: center;
-  position: absolute;
-  opacity: .5;
-  width: 100%;
-}
-</style>
-
