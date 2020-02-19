@@ -1,19 +1,22 @@
 from django.urls import path
 from django.contrib import admin
-from django.contrib.auth import logout
+from rest_framework_simplejwt import views as jwt_views
 from django.conf.urls import include
 
-from config.api import api
 
 apipatterns = [
     path('', include('apps.steps.urls')),
 ]
 
+authpatterns = [
+    path('', include('djoser.urls')),
+    path('token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+]
+
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
-    path('logout/', logout, {'next_page': '/'}, name='logout'),
-    
+    path('api/auth/', include((authpatterns, 'auth'), namespace='auth')),
     path('api/', include((apipatterns, 'api'), namespace='api')),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
