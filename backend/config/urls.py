@@ -6,6 +6,7 @@ from django.conf.urls import include
 
 apipatterns = [
     path('', include('apps.steps.urls')),
+    path('', include('apps.projects.urls')),
 ]
 
 authpatterns = [
