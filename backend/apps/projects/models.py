@@ -17,7 +17,7 @@ class ProjectFile(models.Model):
     project = models.ForeignKey(Project, related_name='project_file', on_delete=models.CASCADE)
     file = models.FileField(upload_to='project_files', validators=[FileExtensionValidator(allowed_extensions=['csv'])])
     description = models.TextField()
-    filesize = models.CharField(max_length=255)
+    filesize = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
         return self.file.name
@@ -25,5 +25,6 @@ class ProjectFile(models.Model):
     def calculate_filesize(self):
         self.filesize = convert_to_megabytes(self.file.size, system=verbose)  # converting from bytes to megabytes
 
-    def save(self):
+    def save(self, *args, **kwargs):
         self.calculate_filesize()
+        super(ProjectFile, self).save(*args, **kwargs)
