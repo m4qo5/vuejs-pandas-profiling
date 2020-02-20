@@ -46,3 +46,4 @@ Werkzeug==0.14.1
 djangorestframework-simplejwt==4.3.0
 djoser==1.7.0
 djangorestframework-jwt==1.11.0
+hurry.filesize
