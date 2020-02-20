@@ -30,6 +30,13 @@
         inset
         color="black"/>
       <v-btn v-if="!isAuthenticated" to="/sign-in" text class="black--text">Sign In</v-btn>
+      <v-btn v-if="isAuthenticated" text class="black--text">Profile</v-btn>
+      <VerticalDivider
+        v-if="isAuthenticated"
+        class="mx-2"
+        vertical
+        inset
+        color="black"/>
       <v-btn v-if="isAuthenticated" @click="signOut" text class="black--text">Sign Out</v-btn>
     </v-app-bar>
 </template>

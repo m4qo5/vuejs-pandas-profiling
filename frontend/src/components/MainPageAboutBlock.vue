@@ -1,25 +1,23 @@
 <template>
     <v-card>
-      <v-responsive :aspect-ratio="16/9">
+      <v-responsive>
         <h1 class="display-2 text-center pt-12 pb-12 font-weight-thin">Data Science is everywhere. We can help you keep your project going on.</h1>
         <WeProvideBlock />
-        <h1 class="display-2 text-center pt-12 pb-12 font-weight-thin">Flow provides simple solution for problems</h1>
-        <UsingFlowBlock />
+        <Footer />
       </v-responsive>
     </v-card>
-  
 </template>
 
 
 <script>
 import WeProvideBlock from './MainPageSmallComponents/WeProvideBlock'
-import UsingFlowBlock from './MainPageSmallComponents/UsingFlowBlock'
 import VerticalDivider from './MainPageSmallComponents/VerticalDivider'
+import Footer from './MainPageSmallComponents/Footer'
 
   export default {
     name: 'MainPageAboutBlock',
     components : {
-        WeProvideBlock, UsingFlowBlock, VerticalDivider
+        WeProvideBlock, VerticalDivider, Footer
     }
 }
 </script>
