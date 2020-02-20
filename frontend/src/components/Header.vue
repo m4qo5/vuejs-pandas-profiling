@@ -30,7 +30,7 @@
         inset
         color="black"/>
       <v-btn v-if="!isAuthenticated" to="/sign-in" text class="black--text">Sign In</v-btn>
-      <v-btn v-if="isAuthenticated" to="/profile" text class="black--text">Profile</v-btn>
+      <v-btn v-if="isAuthenticated" to="/profile" text class="black--text">Projects</v-btn>
       <VerticalDivider
         v-if="isAuthenticated"
         class="mx-2"
