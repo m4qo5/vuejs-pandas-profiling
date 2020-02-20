@@ -8,9 +8,6 @@
       <v-form method="post" @submit.prevent="signIn">
         <v-text-field
           v-model="credentials.email"
-          v-validate="'required|email'"
-          :error-messages="errors.collect('email')"
-          data-vv-name="email"
           class="font-weight-light title"
           label="Email address"
           prepend-icon="mdi-account-circle"
@@ -18,10 +15,6 @@
         />
         <v-text-field
           v-model="credentials.password"
-          v-validate="'required|min:8|max:32'"
-          :counter="32"
-          :error-messages="errors.collect('password')"
-          data-vv-name="password"
           class="font-weight-light title"
           :type="showPassword ? 'text' : 'password'"
           label="Password"
@@ -37,7 +30,6 @@
             text
             class="black--text subtitle font-weight-light"
             type="submit"
-            @click="validate"
           >Send</v-btn>
         </v-card-actions>
       </v-form>
@@ -48,19 +40,12 @@
 
 
 <script>
-import Vue from "vue";
-Vue.use(ValidationProvider)
-import { ValidationProvider } from "vee-validate";
-Vue.component('ValidationProvider', ValidationProvider);
 import VerticalDivider from "../MainPageSmallComponents/VerticalDivider";
 
 export default {
-  $_veeValidate: {
-    validator: "new",
-  },
   name: "SignIn",
   components: {
-    VerticalDivider, VeeValidate
+    VerticalDivider
   },
   data() {
     return {
@@ -70,33 +55,12 @@ export default {
         password: ""
       },
       exceptionRequest: null,
-      dictionary: {
-        attributes: {
-          email: "E-mail Address",
-          password: "Password"
-          // custom attributes
-        },
-        custom: {
-          email: {
-            required: () => "Email can not be empty",
-            max: "The name field may not be greater than 10 characters"
-            // custom messages
-          },
-          password: {
-            required: () => "Password can not be empty",
-            max: "The password field may not be greater than 32 characters",
-            min: "The password field must be greater than 8 characters"
-            // custom messages
-          }
-        }
-      }
     };
   },
   methods: {
-    async signIn() {
+    signIn() {
       try {
-        await this.$store.dispatch("signIn", this.credentials);
-        alert("Signed in");
+        this.$store.dispatch("signIn", this.credentials);
         this.$router.push("/");
       } catch (err) {
         this.exceptionRequest = err.data;
@@ -107,12 +71,6 @@ export default {
       this.credentials.password = "";
       this.showPassword = false;
     },
-    validate() {
-      this.$validator.validateAll();
-    }
   },
-  mounted() {
-    this.$validator.localize("en", this.dictionary);
-  }
 };
 </script>

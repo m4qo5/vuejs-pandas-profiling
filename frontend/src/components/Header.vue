@@ -49,9 +49,9 @@ export default {
         return this.$route.path === '/'
   }},
   methods: {
-        async signOut() {
+        signOut() {
             try {
-                await this.$store.dispatch("signOut");
+                this.$store.dispatch("signOut");
             }
             catch {
                 alert("Something wrong")

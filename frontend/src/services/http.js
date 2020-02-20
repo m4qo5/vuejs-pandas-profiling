@@ -53,10 +53,20 @@ const auth = {
             email: payload.email,
             password: payload.password
         })
+    },  
+}
+
+const users = {
+    me () {
+        return client.get('auth/users/me')
     },
+    all () {
+        return client.get('auth/users/')
+    }
 }
 
 export const http = {
     steps,
     auth,
+    users,
 }

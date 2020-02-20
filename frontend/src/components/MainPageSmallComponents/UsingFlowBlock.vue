@@ -56,3 +56,9 @@
     </v-timeline-item>
   </v-timeline>
 </template>
+
+<script>
+export default {
+  name: "UsingFlowBlock",
+}
+</script>
