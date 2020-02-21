@@ -20,8 +20,9 @@ class ProjectFileSerializer(serializers.ModelSerializer):
         return request.build_absolute_uri(file)
         
 
-class ProjectSerializer(serializers.ModelSerializer):
-    project_files = ProjectFileSerializer(many=True)
+class ProjectListSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
     class Meta:
         model = Project
         fields = (
@@ -29,5 +30,22 @@ class ProjectSerializer(serializers.ModelSerializer):
             'name',
             'description',
             'version',
-            'project_files',
+            'image',
+        )
+    
+    def get_image(self, project):
+        request = self.context.get('request')
+        image = project.image.url
+        return request.build_absolute_uri(image)
+
+
+class ProjectCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = (
+            'id',
+            'name',
+            'description',
+            'version',
+            'image',
         )
