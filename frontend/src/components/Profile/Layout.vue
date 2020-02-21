@@ -37,13 +37,7 @@
       </v-btn>
       
     </v-app-bar>
-    <v-content>
-      <v-container
-        class="fill-height"
-        fluid
-      >
-      </v-container>
-    </v-content>
+    <Content />
     <v-btn
       bottom
       color="black"
@@ -63,12 +57,13 @@
   import VerticalDivider from '../MainPageSmallComponents/VerticalDivider'
   import DrawerList from './DrawerList'
   import Dialog from './Dialog'
+  import Content from './Content'
   import { mapGetters } from "vuex";
 
   export default {
     name: 'Layout',
     components: {
-        VerticalDivider, DrawerList, Dialog
+        VerticalDivider, DrawerList, Dialog, Content
     },
     computed: {
     ...mapGetters(["isAuthenticated", "currentUser"]),
