@@ -82,7 +82,7 @@
         
     },
     data: () => ({
-      drawer: false,
+      drawer: true,
       items: [
         { icon: 'mdi-plus', text: 'Add data to project' },
         {
