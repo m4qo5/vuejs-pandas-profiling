@@ -65,8 +65,15 @@ const users = {
     }
 }
 
+const projects = {
+    all () {
+        return client.get('projects/')
+    }
+}
+
 export const http = {
     steps,
     auth,
     users,
+    projects,
 }
