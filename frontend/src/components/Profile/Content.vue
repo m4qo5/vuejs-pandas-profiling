@@ -15,7 +15,7 @@
                             {{ project.description }}
                             </div>
                         </v-expand-transition>
-                    <v-card-title class="display-1 font-weight-light">{{ project.title }} v{{ project.version }}</v-card-title>
+                    <v-card-title class="display-1 font-weight-light">{{ project.name }} v{{ project.version }}</v-card-title>
                     </v-img>
                     </v-card>
                 </v-hover>
