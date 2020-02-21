@@ -15,6 +15,12 @@
         <span class="hidden-sm-and-down black--text">The Flow</span>
       </v-toolbar-title>
       <v-spacer />
+      <v-btn v-if="!main" to="/" text class="black--text">Back</v-btn>
+      <VerticalDivider
+        class="mx-2"
+        vertical
+        inset
+        color="black"/>
       <v-btn
         icon
         large
@@ -29,6 +35,7 @@
             alt="The Flow Logo"
           /></v-avatar>
       </v-btn>
+      
     </v-app-bar>
     <v-content>
       <v-container
@@ -56,12 +63,18 @@
   import VerticalDivider from '../MainPageSmallComponents/VerticalDivider'
   import DrawerList from './DrawerList'
   import Dialog from './Dialog'
+  import { mapGetters } from "vuex";
 
   export default {
     name: 'Layout',
     components: {
         VerticalDivider, DrawerList, Dialog
     },
+    computed: {
+    ...mapGetters(["isAuthenticated", "currentUser"]),
+    main(){
+        return this.$route.path === '/'
+    }},
     data: () => ({
       items: [
         { icon: 'mdi-plus', text: 'Add data to project' },
