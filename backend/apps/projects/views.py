@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import ProjectFileSerializer, ProjectSerializer
+from .serializers import ProjectFileSerializer, ProjectListSerializer, ProjectCreateSerializer
 from .models import Project, ProjectFile
 from rest_framework import mixins, viewsets
 
@@ -9,7 +9,11 @@ class ProjectViewSet(mixins.ListModelMixin,
                       mixins.CreateModelMixin,
                       mixins.UpdateModelMixin,
                       mixins.RetrieveModelMixin):
-    serializer_class = ProjectSerializer
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return ProjectListSerializer
+        return ProjectCreateSerializer
     queryset = Project.objects.all()
 
 
