@@ -3,21 +3,26 @@
     <v-card>
       <v-card-title class="white darken-2 font-weight-thin display-1">Create project</v-card-title>
       <v-container>
-        <v-form id="createProject" enctype="multipart/form-data" method="post" @submit.prevent="createProject">
+        <v-form id="createProject" name="createProjectForm" enctype="multipart/form-data" method="post" @submit.prevent="createProject">
             <v-row class="mx-0">
             <v-col class="align-center justify-space-between" cols="6">
                 <v-row align="center" class="mx-0">
-                <v-text-field name="name" placeholder="Name"/>
+                <v-text-field name="name" v-model="project.name" placeholder="Name"/>
                 </v-row>
             </v-col>
             <v-col cols="6">
-                <v-text-field name="version" type="number" min="0" placeholder="Version" />
+                <v-text-field name="version" v-model="project.version" type="number" min="0" placeholder="Version" />
             </v-col>
             <v-col cols="12">
-                <v-textarea solo name="description" label="Description"></v-textarea>
+                <v-textarea solo name="description" v-model="project.description" label="Description"></v-textarea>
             </v-col>
             <v-col cols="12">
-                <v-file-input id="file-input" accept="image/*" name="image" label="Project Image" class="mx-0"></v-file-input>
+                <v-file-input id="file-input"
+                    accept="image/*"
+                    name="image"
+                    label="Project Image"
+                    class="mx-0">
+                </v-file-input>
             </v-col>
             </v-row>
       <v-card-actions>
@@ -41,17 +46,25 @@ export default {
   components: {
     VerticalDivider
   },
-  data: () => ({
-    dialog: false,
-  }),
-  methods: {
-    createProject: function(e) {
-        var form = document.getElementById('createProject');
-        var formData = new FormData(form);
-        for(var pair of formData.entries()) {
-    		console.log(pair); 
+  data: function () {
+    return  {
+        dialog: false,
+        project: {
+            name: "",
+            description: "",
+            version: null
         }
-        this.$store.dispatch('createProject', formData);
+    }
+  },
+  methods: {
+    createProject: function(event) {
+        var fdata = new FormData();
+        var image = document.getElementById("file-input").files[0];
+        fdata.append("name", this.project.name);
+        fdata.append("description", this.project.description);
+        fdata.append("version", this.project.version);
+        fdata.append("image", image);
+        this.$store.dispatch('createProject', fdata);
         this.clear()
     },
     clear: function() {
