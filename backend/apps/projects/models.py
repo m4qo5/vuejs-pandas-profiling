@@ -8,7 +8,7 @@ class Project(models.Model):
     name = models.CharField(max_length=255, unique=True)
     version = models.PositiveIntegerField()
     description = models.TextField()
-    image = models.ImageField(upload_to='', default='blue1.jpg')
+    image = models.ImageField(upload_to='project_images')
 
     def __str__(self):
         return self.name
