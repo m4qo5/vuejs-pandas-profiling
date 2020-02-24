@@ -70,12 +70,7 @@ const projects = {
         return client.get('projects/')
     },
     create (payload) {
-        return client.post('projects/', {
-            name: payload.get('name'),
-            version: payload.get('version'),
-            description: payload.get('description'),
-            image: payload.image
-        })
+        return client.post('projects/', payload)
     }
 }
 
