@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import Project, ProjectFile
 
 
-class ProjectFileSerializer(serializers.ModelSerializer):
+class ProjectFileListSerializer(serializers.ModelSerializer):
     file = serializers.SerializerMethodField()
 
     class Meta:
@@ -11,14 +11,25 @@ class ProjectFileSerializer(serializers.ModelSerializer):
             'id',
             'file',
             'description',
-            'filesize',
+            'project',
         )
 
     def get_file(self, project_file):
         request = self.context.get('request')
         file = project_file.file.url
         return request.build_absolute_uri(file)
-        
+
+
+class ProjectFileCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProjectFile
+        fields = (
+            'id',
+            'file',
+            'description',
+            'project'
+        )
+
 
 class ProjectListSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
