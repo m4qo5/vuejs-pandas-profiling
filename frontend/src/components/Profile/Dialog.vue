@@ -18,10 +18,12 @@
             </v-col>
             <v-col cols="12">
                 <v-file-input id="file-input"
+                    v-model="project.image"
                     accept="image/*"
                     name="image"
                     label="Project Image"
-                    class="mx-0">
+                    class="mx-0"
+                    clearable>
                 </v-file-input>
             </v-col>
             </v-row>
@@ -52,7 +54,8 @@ export default {
         project: {
             name: "",
             description: "",
-            version: null
+            version: null,
+            image: null,
         }
     }
   },
@@ -71,6 +74,7 @@ export default {
         this.dialog = false;
         var form = document.getElementById('createProject');
         var file = document.getElementById('file-input');
+        this.project.image = null;
         form.reset();
     }
 }
