@@ -21,8 +21,8 @@ const router =  new Router({
       component: SignInView
     },
     {
-      path: '/profile',
-      name: 'profile',
+      path: '/projects',
+      name: 'projects',
       component: Profile
     },
 
