@@ -1,5 +1,5 @@
 import {
-    SET_LOADING, SET_PROJECTS, ADD_PROJECT
+    SET_LOADING, SET_PROJECTS, ADD_PROJECT, ADD_PROJECT_TO_CURRENT_PROJECTS
 } from '../mutation.types'
 import { http } from '@/services/http'
 
@@ -28,6 +28,9 @@ const mutations = {
     [ADD_PROJECT](state, payload) {
         state.newProject = payload
     },
+    [ADD_PROJECT_TO_CURRENT_PROJECTS](state, payload) {
+        state.projects = state.projects.push(payload)
+    },
 }
 
 
@@ -46,7 +49,8 @@ const actions = {
         return http.projects.create(payload)
             .then(data => {
                 commit(ADD_PROJECT, data)
-                return dispatch('getProjects')
+                //return dispatch('getProjects')
+                commit(ADD_PROJECT_TO_CURRENT_PROJECTS, data)
             })
     },
 }
