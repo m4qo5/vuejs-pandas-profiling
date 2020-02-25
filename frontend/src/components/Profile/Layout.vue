@@ -49,21 +49,21 @@
     >
       <v-icon>mdi-plus</v-icon>
     </v-btn>
-    <Dialog ref="dialog"/>
+    <ProjectDialog ref="dialog"/>
   </v-app>
 </template>
 
 <script>
   import VerticalDivider from '../MainPageSmallComponents/VerticalDivider'
   import DrawerList from './DrawerList'
-  import Dialog from './Dialog'
+  import ProjectDialog from './ProjectDialog'
   import Content from './Content'
   import { mapGetters } from "vuex";
 
   export default {
     name: 'Layout',
     components: {
-        VerticalDivider, DrawerList, Dialog, Content
+        VerticalDivider, DrawerList, ProjectDialog, Content
     },
     computed: {
     ...mapGetters(["isAuthenticated", "currentUser"]),
