@@ -69,8 +69,14 @@ const projects = {
     all () {
         return client.get('projects/')
     },
+    allFiles () {
+        return client.get('project-files/')
+    },
     create (payload) {
         return client.post('projects/', payload)
+    },
+    createProjectFile (payload) {
+        return client.post('project-files/', payload)
     }
 }
 
