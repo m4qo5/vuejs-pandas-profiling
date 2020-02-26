@@ -1,13 +1,11 @@
 <template>
-  <v-app id="inspire">
-    <DrawerList ref="drawer"/>
     <v-app-bar
       :clipped-left="$vuetify.breakpoint.lgAndUp"
       app
       color="white darken-3"
       white
     >
-      <v-app-bar-nav-icon @click.stop="$refs.drawer.drawer = !$refs.drawer.drawer" />
+      <v-app-bar-nav-icon @click="clickDrawer"/>
       <v-toolbar-title
         style="width: 300px"
         class="ml-0 pl-4"
@@ -35,58 +33,27 @@
             alt="The Flow Logo"
           /></v-avatar>
       </v-btn>
-      
     </v-app-bar>
-    <Content />
-    <v-btn
-      bottom
-      color="black"
-      dark
-      fab
-      fixed
-      right
-      @click="$refs.dialog.dialog = !$refs.dialog.dialog"
-    >
-      <v-icon>mdi-plus</v-icon>
-    </v-btn>
-    <ProjectDialog ref="dialog"/>
-  </v-app>
 </template>
 
 <script>
   import VerticalDivider from '../MainPageSmallComponents/VerticalDivider'
-  import DrawerList from './DrawerList'
-  import ProjectDialog from './ProjectDialog'
-  import Content from './Content'
   import { mapGetters } from "vuex";
 
   export default {
     name: 'Layout',
     components: {
-        VerticalDivider, DrawerList, ProjectDialog, Content
+        VerticalDivider
+    },
+    methods: {
+        clickDrawer() {
+            this.$store.commit('SET_SHOW_DRAWER')
+        }
     },
     computed: {
-    ...mapGetters(["isAuthenticated", "currentUser"]),
+    ...mapGetters(["isAuthenticated", "currentUser", "selectedProject", "drawer"]),
     main(){
         return this.$route.path === '/'
     }},
-    data: () => ({
-      items: [
-        { icon: 'mdi-plus', text: 'Add data to project' },
-        {
-          icon: 'mdi-chevron-up',
-          'icon-alt': 'mdi-chevron-down',
-          text: 'More',
-          model: false,
-          children: [
-            { text: 'Import' },
-            { text: 'Export' },
-            { text: 'Print' },
-            { text: 'Undo changes' },
-            { text: 'Other contacts' },
-          ],
-        },
-      ],
-    }),
   }
 </script>
