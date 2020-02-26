@@ -4,8 +4,9 @@
       :clipped="$vuetify.breakpoint.lgAndUp"
       app
     >
+
       <v-list dense>
-        <template v-for="item in items">
+        <template v-for="item in drawerItems">
           <v-row
             v-if="item.heading"
             :key="item.heading"
@@ -76,29 +77,20 @@
 
 
 <script>
+  import { mapGetters, mapState } from "vuex";
+
   export default {
     name: 'DrawerList',
-    components: {
-        
+    computed: {
+        ...mapGetters(["drawer", "drawerItems"]),
+        drawer: {
+           get(){
+           return this.$store.getters.drawer
+           },
+           set(){
+            return;
+           }
+        }
     },
-    data: () => ({
-      drawer: true,
-      items: [
-        { icon: 'mdi-plus', text: 'Add data to project' },
-        {
-          icon: 'mdi-chevron-up',
-          'icon-alt': 'mdi-chevron-down',
-          text: 'More',
-          model: false,
-          children: [
-            { text: 'Import' },
-            { text: 'Export' },
-            { text: 'Print' },
-            { text: 'Undo changes' },
-            { text: 'Other contacts' },
-          ],
-        },
-      ],
-    }),
   }
 </script>
