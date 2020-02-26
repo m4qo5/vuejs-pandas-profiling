@@ -8,7 +8,7 @@
                 <v-expand-transition>
                     <div
                         v-if="hover"
-                        class="d-flex transition-fast-in-fast-out v-card--reveal font-italic font-weight-light headline black--text"
+                        class="d-flex transition-fast-in-fast-out v-card--reveal font-italic font-weight-light title black--text"
                         style="height: 100%;"
                     >
                       {{ step.description }}
