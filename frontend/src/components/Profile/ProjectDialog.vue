@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" width="850px" height="850px">
+  <v-dialog v-model="projectDialog" width="850px" height="850px">
     <v-card>
       <v-card-title class="white darken-2 font-weight-thin display-1">Create project</v-card-title>
       <v-container>
@@ -42,15 +42,27 @@
 
 <script>
 import VerticalDivider from "../MainPageSmallComponents/VerticalDivider";
+import { mapGetters } from "vuex";
+
 
 export default {
   name: "ProjectDialog",
   components: {
     VerticalDivider
   },
+  computed: {
+    ...mapGetters(["projectDialog"]),
+    projectDialog: {
+        get() {
+            return this.$store.getters.projectDialog
+        },
+        set() {
+            this.$store.commit('SET_SHOW_PROJECT_DIALOG')
+        }
+    }
+  },
   data: function () {
     return  {
-        dialog: false,
         project: {
             name: "",
             description: "",
@@ -71,7 +83,7 @@ export default {
         this.clear()
     },
     clear: function() {
-        this.dialog = false;
+        this.$store.commit('SET_SHOW_PROJECT_DIALOG')
         var form = document.getElementById('createProject');
         var file = document.getElementById('file-input');
         this.project.image = null;
