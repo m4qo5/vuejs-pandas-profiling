@@ -1,13 +1,14 @@
 <template>
   <v-content style="padding: 0 0 0 0">
-    <v-container grid-list-lg text-xs-center>
-      <v-layout row wrap v-if="!projectsAreLoading">
+    <SingleProject v-if="singleProject"/>
+    <v-container grid-list-lg text-xs-center v-if="!singleProject">
+      <v-layout row wrap v-if="!loading">
         <v-flex v-for="project in projects" :key="project.id" xs3>
           <v-hover v-slot:default="{ hover }">
-            <v-card class="mx-auto" max-width="400px" shaped :elevation="24">
+            <v-card class="mx-auto scroll-y" max-width="500px" shaped :elevation="24">
               <v-img
                 class="align-top"
-                height="200px"
+                height="250px"
                 :src="project.image"
                 gradient="to top right, rgba(255,255,255,.33), rgba(0,100,170,.15)"
               >
@@ -17,8 +18,11 @@
                     class="d-flex transition-slow-in-slow-out v-card--reveal"
                     style="height: 100%;"
                   >
-                    <v-btn @click="fileUploadClick(project)" color="green" dark fab>
+                    <v-btn @click="fileUploadClick(project)" color="green" class="mr-5" dark fab>
                       <v-icon>mdi-plus</v-icon>
+                    </v-btn>
+                    <v-btn @click="selectProject(project)" color="dark" dark fab>
+                      <v-icon>mdi-chevron-up</v-icon>
                     </v-btn>
                   </div>
                 </v-expand-transition>
@@ -32,29 +36,42 @@
         </v-flex>
       </v-layout>
     </v-container>
-    {{selectedProject}}
-    <ProjectFileDialog ref="dialog"/>
+    <v-btn
+        bottom
+        color="black"
+        dark
+        fab
+        fixed
+        right
+        @click="openModal"
+        >
+        <v-icon>mdi-plus</v-icon>
+        </v-btn>
   </v-content>
 </template>
 
 
 <script>
 import { mapGetters } from "vuex";
-import ProjectFileDialog from './ProjectFileDialog'
-
 
 export default {
   name: "Content",
-  components: {
-      ProjectFileDialog
-  },
   computed: {
-    ...mapGetters(["projects", "projectsAreLoading", "selectedProject"])
+    ...mapGetters(["projects", "loading", "selectedProject", "projectDialog", "fileDialog"]),
   },
   methods: {
+      openModal() {
+        this.$store.commit('SET_SHOW_PROJECT_DIALOG')
+      },
       fileUploadClick(project) {
+        this.$store.commit('SET_SHOW_FILE_DIALOG');
         this.$store.dispatch("selectProject", project);
-        this.$refs.dialog.dialog = !this.$refs.dialog.dialog
+        
+      },
+      selectProject(project) {
+        this.$store.dispatch("selectProject", project);
+        this.$store.dispatch("getProjectFiles");
+        this.singleProject = !this.singleProject;
       }
   },
   async mounted() {
