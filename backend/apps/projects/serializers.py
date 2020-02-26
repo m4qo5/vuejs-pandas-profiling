@@ -4,6 +4,7 @@ from .models import Project, ProjectFile
 
 class ProjectFileListSerializer(serializers.ModelSerializer):
     file = serializers.SerializerMethodField()
+    file_name = serializers.SerializerMethodField()
 
     class Meta:
         model = ProjectFile
@@ -12,12 +13,18 @@ class ProjectFileListSerializer(serializers.ModelSerializer):
             'file',
             'description',
             'project',
+            'file_name',
         )
 
     def get_file(self, project_file):
         request = self.context.get('request')
         file = project_file.file.url
         return request.build_absolute_uri(file)
+
+    def get_file_name(self, project_file):
+        request = self.context.get('request')
+        file_name = project_file.file.name
+        return file_name
 
 
 class ProjectFileCreateSerializer(serializers.ModelSerializer):
@@ -33,6 +40,7 @@ class ProjectFileCreateSerializer(serializers.ModelSerializer):
 
 class ProjectListSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
+    project_files = ProjectFileListSerializer(many=True)
 
     class Meta:
         model = Project
@@ -42,6 +50,7 @@ class ProjectListSerializer(serializers.ModelSerializer):
             'description',
             'version',
             'image',
+            'project_files',
         )
     
     def get_image(self, project):
