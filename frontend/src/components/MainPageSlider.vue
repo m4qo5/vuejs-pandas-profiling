@@ -12,7 +12,6 @@
 <script>
   export default {
     name: 'MainPageSlider',
-
     data () {
       return {
         items: [
