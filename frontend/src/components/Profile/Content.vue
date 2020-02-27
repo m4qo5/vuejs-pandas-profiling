@@ -69,6 +69,7 @@ export default {
       },
       selectProject(project) {
         this.$store.dispatch("selectProject", project);
+        this.$store.commit('SET_IS_SELECTED_PROJECT')
         this.$store.dispatch("getProjectFiles");
         this.$router.push({ name: 'projectFiles', params: { id: project.id } })
       }
