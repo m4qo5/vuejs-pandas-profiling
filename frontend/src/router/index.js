@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/views/Home'
 import SignInView from '@/views/SignInView'
 import Projects from '@/views/Projects'
+import ProjectFiles from '@/views/ProjectFiles'
 import store from '../store/store'
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ const router =  new Router({
       path: '/projects',
       name: 'projects',
       component: Projects
+    },
+    {
+      path: '/project/:id/project-files',
+      name: 'projectFiles',
+      component: ProjectFiles
     },
 
     { 
