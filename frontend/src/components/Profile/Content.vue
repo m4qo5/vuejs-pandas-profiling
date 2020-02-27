@@ -1,7 +1,6 @@
 <template>
   <v-content style="padding: 0 0 0 0">
-    <SingleProject v-if="singleProject"/>
-    <v-container grid-list-lg text-xs-center v-if="!singleProject">
+    <v-container grid-list-lg text-xs-center>
       <v-layout row wrap v-if="!loading">
         <v-flex v-for="project in projects" :key="project.id" xs3>
           <v-hover v-slot:default="{ hover }">
@@ -71,7 +70,7 @@ export default {
       selectProject(project) {
         this.$store.dispatch("selectProject", project);
         this.$store.dispatch("getProjectFiles");
-        this.singleProject = !this.singleProject;
+        this.$router.push({ name: 'projectFiles', params: { id: project.id } })
       }
   },
   async mounted() {
