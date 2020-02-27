@@ -27,7 +27,7 @@ const router =  new Router({
       component: Projects
     },
     {
-      path: '/project/:id/project-files',
+      path: '/projects/:id/project-files',
       name: 'projectFiles',
       component: ProjectFiles
     },
