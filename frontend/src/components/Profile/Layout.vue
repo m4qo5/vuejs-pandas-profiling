@@ -13,7 +13,7 @@
         <span class="hidden-sm-and-down black--text">The Flow</span>
       </v-toolbar-title>
       <v-spacer />
-      <v-btn v-if="!main" to="/" text class="black--text">Back</v-btn>
+      <v-btn v-if="!main" @click="previousRouterPage" text class="black--text">Back</v-btn>
       <VerticalDivider
         class="mx-2"
         vertical
@@ -48,6 +48,9 @@
     methods: {
         clickDrawer() {
             this.$store.commit('SET_SHOW_DRAWER')
+        },
+        previousRouterPage() {
+            this.$router.go(-1)
         }
     },
     computed: {
