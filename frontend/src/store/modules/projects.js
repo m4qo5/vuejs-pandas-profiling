@@ -10,7 +10,7 @@ const state = {
     loading: null,
     newProject: null,
     selectedProject: null,
-    isSelectedProject: false,
+    selectedId: false,
     projectFiles: [],
 }
 
@@ -19,7 +19,7 @@ const getters = {
     loading: state => state.loading,
     newProject: state => state.newProject,
     selectedProject: state => state.selectedProject,
-    isSelectedProject: state => state.isSelectedProject,
+    selectedId: state => state.selectedId,
     projectFiles: state => state.projectFiles,
 }
 
@@ -43,8 +43,8 @@ const mutations = {
     [SET_SELECTED_PROJECT](state, payload) {
         state.selectedProject = payload
     },
-    [SET_IS_SELECTED_PROJECT](state) {
-        state.isSelectedProject = !state.isSelectedProject
+    [SET_IS_SELECTED_PROJECT](state, payload) {
+        state.selectedId = payload
     },
     [ADD_PROJECT_FILE](state, payload) {
         state.projectFiles.unshift(payload)
