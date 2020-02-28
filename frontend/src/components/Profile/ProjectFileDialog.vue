@@ -43,7 +43,7 @@ export default {
     VerticalDivider
   },
   computed: {
-    ...mapGetters(["selectedProject", "projectFiles", "fileDialog"]),
+    ...mapGetters(["projectFiles", "fileDialog", "selectedId"]),
     fileDialog: {
         get() {
             return this.$store.getters.fileDialog
@@ -68,13 +68,13 @@ export default {
         //var file = document.getElementById("file-input").files[0];
         fdata.append("description", this.projectFile.description);
         fdata.append("file", this.projectFile.file);
-        fdata.append("project", this.selectedProject.id);
+        fdata.append("project", this.selectedId);
         this.$store.dispatch('createProjectFile', fdata);
+        
         this.clear()
     },
     clear: function() {
         this.$store.commit('SET_SHOW_FILE_DIALOG');
-        this.$store.dispatch("selectProject", null);
         this.projectFile.description = '';
         this.projectFile.file = null;
     }

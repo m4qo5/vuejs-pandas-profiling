@@ -64,11 +64,9 @@ export default {
       },
       fileUploadClick(project) {
         this.$store.commit('SET_SHOW_FILE_DIALOG');
-        this.$store.dispatch("selectProject", project);
-        
+        this.$store.commit('SET_IS_SELECTED_PROJECT', project.id)
       },
       selectProject(project) {
-        this.$store.commit('SET_IS_SELECTED_PROJECT')
         this.$router.push({ name: 'projectFiles', params: { id: project.id} })
       }
   },
