@@ -2,7 +2,7 @@
   <v-app id="inspire">
       <Layout />
       <DrawerList />
-      <SingleProject v-if="isSelectedProject"/>
+      <SingleProject/>
   </v-app>
 </template>
 
@@ -16,9 +16,6 @@ export default {
   name: "ProjectFiles",
   components: {
     Layout, DrawerList, SingleProject
-  },
-  computed: {
-    ...mapGetters(["isSelectedProject"])
-  },
+  }
 };
 </script>
