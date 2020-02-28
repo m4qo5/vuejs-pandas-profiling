@@ -1,9 +1,16 @@
+import pandas as pd
+import json
 from django.shortcuts import render
 from .serializers import (ProjectFileListSerializer, ProjectListSerializer,
                           ProjectCreateSerializer, ProjectFileCreateSerializer,
                           ProjectRetrieveSerializer)
 from .models import Project, ProjectFile
 from rest_framework import mixins, viewsets
+from rest_framework.decorators import api_view, renderer_classes
+from pandas_profiling import ProfileReport
+from rest_framework.response import Response
+from rest_framework.renderers import StaticHTMLRenderer
+from django.core.files import File
 
 
 class ProjectViewSet(mixins.ListModelMixin,
@@ -31,3 +38,15 @@ class ProjectFileViewSet(mixins.ListModelMixin,
             return ProjectFileListSerializer
         return ProjectFileCreateSerializer
     queryset = ProjectFile.objects.all()
+
+
+@api_view(['GET'])
+@renderer_classes([StaticHTMLRenderer])
+def get_file_data(request):
+    file = ProjectFile.objects.get(pk=request.data['id'])
+    df = pd.read_csv(file.file)
+    profile = ProfileReport(df, title=file.description, html={'style':{'full_width':True}})
+    return Response(profile.to_html())
+
+
+
