@@ -56,7 +56,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "Content",
   computed: {
-    ...mapGetters(["projects", "loading", "selectedProject", "projectDialog", "fileDialog"]),
+    ...mapGetters(["projects", "loading", "projectDialog", "fileDialog"]),
   },
   methods: {
       openModal() {
@@ -68,10 +68,8 @@ export default {
         
       },
       selectProject(project) {
-        this.$store.dispatch("selectProject", project);
         this.$store.commit('SET_IS_SELECTED_PROJECT')
-        this.$store.dispatch("getProjectFiles");
-        this.$router.push({ name: 'projectFiles', params: { id: project.id } })
+        this.$router.push({ name: 'projectFiles', params: { id: project.id} })
       }
   },
   async mounted() {
