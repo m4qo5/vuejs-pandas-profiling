@@ -47,3 +47,5 @@ djangorestframework-simplejwt==4.3.0
 djoser==1.7.0
 djangorestframework-jwt==1.11.0
 hurry.filesize
+pandas==1.0.0
+pandas-profiling==2.5.0
