@@ -88,7 +88,14 @@ const actions = {
             })
     },
     selectProject({ commit }, payload) {
-        commit(SET_SELECTED_PROJECT, payload)
+        commit(SET_LOADING, true)
+        return http.projects.single(payload)
+            .then(data => {
+                commit(SET_SELECTED_PROJECT, data)
+            })
+            .finally(() => {
+                commit(SET_LOADING, false)
+            })
     },
 }
 
