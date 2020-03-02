@@ -19,6 +19,7 @@ class ProjectFile(models.Model):
     file = models.FileField(upload_to='project_files', validators=[FileExtensionValidator(allowed_extensions=['csv'])])
     description = models.TextField()
     filesize = models.CharField(max_length=255, blank=True)
+    report = models.FileField(upload_to='project_files/reports', blank=True, validators=[FileExtensionValidator(allowed_extensions=['html'])])
 
     def __str__(self):
         return self.file.name
