@@ -3,6 +3,10 @@ DS Flow
 
 DS Flow is a training project which allows analyzing of the datasets through vue.js spa application.
 
+## Example of the dataset analysis
+
+![Alt Text](https://github.com/m4qo5/flow/blob/master/report.gif)
+
 
 ## Development
 
