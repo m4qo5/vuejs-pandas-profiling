@@ -80,6 +80,9 @@ const projects = {
     },
     createProjectFile (payload) {
         return client.post('project-files/', payload)
+    },
+    fileReport (payload) {
+        return client.get(`file-report/${payload}`)
     }
 }
 
