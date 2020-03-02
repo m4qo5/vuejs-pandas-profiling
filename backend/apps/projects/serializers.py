@@ -13,6 +13,7 @@ class ProjectFileListSerializer(serializers.ModelSerializer):
             'file',
             'description',
             'project',
+            'filesize',
             'file_name',
         )
 
