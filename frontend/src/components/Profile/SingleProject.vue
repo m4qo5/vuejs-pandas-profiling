@@ -1,38 +1,49 @@
 <template>
-    <v-row justify="center" v-if="!loading">
-        <h1 class="display-2 text-center pt-12 pb-12 font-weight-thin"
-            v-if="!projectHaveFiles">
-            You don't have any data yet. Please, come back and add data to your project.
-        </h1>
-        <v-expansion-panels accordion>
+    <div>
+        <v-expansion-panels>
             <v-expansion-panel
-                v-for="file in selectedProject.project_files"
-                :key="file.id"
+            v-for="file in projectFiles"
+            :key="file.id"
             >
-                <v-expansion-panel-header class="display-1 font-weight-thin">{{ file.description }}</v-expansion-panel-header>
+                <v-expansion-panel-header class="display-1 font-weight-thin">{{file.file_name}}</v-expansion-panel-header>
                 <v-expansion-panel-content>
-                    
+                    Description: {{file.description}} <br/> Size: {{file.filesize}}
+                    <ReportDialog :file_id="file.id"/>
                 </v-expansion-panel-content>
             </v-expansion-panel>
         </v-expansion-panels>
-  </v-row>
+    </div>
 </template>
 
 
 <script>
 import { mapGetters } from "vuex";
+import ReportDialog from './ReportDialog'
 
 export default {
     name: "SingleProject",
+    components: {ReportDialog},
     computed: {
-    ...mapGetters(["loading", "selectedProject", "isSelectedProject"]),
-    projectHaveFiles() {
-        let isMyObjectEmpty = !Object.keys(this.selectedProject.project_files).length;
-        return !isMyObjectEmpty
-    }
+    ...mapGetters(["loading", "selectedProject", "reportDialog"]),
+    projectFiles() {
+        return this.$store.getters.selectedProject.project_files
     },
-    created() {
+    },
+    mounted: function() {
         this.$store.dispatch("selectProject", this.$route.params.id);
+    },
+    methods: {
+      generateReport(value) {
+        this.$store.dispatch("getFileReport", value);
+      }
     }
 }
 </script>
+
+
+<style scoped>
+iframe {
+    width: 1000px;
+    height: 1000px;
+}
+</style>
