@@ -1,7 +1,7 @@
 DS Flow
 =======
 
-DS Flow is a pet project which allows analyzing of the datasets through vue.js spa application.
+DS Flow is a training project which allows analyzing of the datasets through vue.js spa application.
 
 
 ## Development
