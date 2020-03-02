@@ -1,11 +1,11 @@
 <template>
-  <v-app id="inspire">
-      <Layout />
-      <DrawerList/>
-      <Content />
-      <ProjectFileDialog v-if="fileDialog"/>
-      <ProjectDialog v-if="projectDialog"/>
-  </v-app>
+    <div>
+        <Layout />
+        <DrawerList/>
+        <Content />
+        <ProjectFileDialog v-if="fileDialog"/>
+        <ProjectDialog v-if="projectDialog"/>
+    </div>
 </template>
 
 <script>
