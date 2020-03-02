@@ -1,5 +1,5 @@
 import {
-    SET_SHOW_DRAWER, SET_SHOW_PROJECT_DIALOG, SET_SHOW_FILE_DIALOG
+    SET_SHOW_DRAWER, SET_SHOW_PROJECT_DIALOG, SET_SHOW_FILE_DIALOG, SET_SHOW_REPORT_DIALOG
 } from '../mutation.types'
 import { http } from '@/services/http'
 
@@ -8,6 +8,7 @@ const state = {
     drawer: true,
     projectDialog: false,
     fileDialog: false,
+    reportDialog: false,
     drawerItems: [
         { icon: 'mdi-plus', text: 'Add data to project' },
         {
@@ -31,6 +32,7 @@ const getters = {
     drawerItems: state => state.drawerItems,
     projectDialog: state => state.projectDialog,
     fileDialog: state => state.fileDialog,
+    reportDialog: state => state.reportDialog,
 }
 
 
@@ -43,6 +45,9 @@ const mutations = {
     },
     [SET_SHOW_FILE_DIALOG](state) {
         state.fileDialog = !state.fileDialog
+    },
+    [SET_SHOW_REPORT_DIALOG](state) {
+        state.reportDialog = !state.reportDialog
     }
 }
 

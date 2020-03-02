@@ -1,6 +1,6 @@
 import {
     SET_LOADING, SET_PROJECTS, ADD_PROJECT, ADD_PROJECT_TO_CURRENT_PROJECTS, SET_SELECTED_PROJECT,
-    ADD_PROJECT_FILE, SET_PROJECT_FILES, SET_IS_SELECTED_PROJECT
+    ADD_PROJECT_FILE, SET_PROJECT_FILES, SET_IS_SELECTED_PROJECT, SET_FILE_REPORT
 } from '../mutation.types'
 import { http } from '@/services/http'
 
@@ -10,6 +10,7 @@ const state = {
     loading: null,
     newProject: null,
     selectedProject: null,
+    fileReport: null,
     selectedId: false,
     projectFiles: [],
 }
@@ -21,6 +22,7 @@ const getters = {
     selectedProject: state => state.selectedProject,
     selectedId: state => state.selectedId,
     projectFiles: state => state.projectFiles,
+    fileReport: state => state.fileReport,
 }
 
 
@@ -46,6 +48,9 @@ const mutations = {
     [SET_IS_SELECTED_PROJECT](state, payload) {
         state.selectedId = payload
     },
+    [SET_FILE_REPORT](state, payload) {
+        state.fileReport = payload
+    },
     [ADD_PROJECT_FILE](state, payload) {
         state.projectFiles.unshift(payload)
     },
@@ -58,6 +63,16 @@ const actions = {
         return http.projects.all()
             .then(data => {
                 commit(SET_PROJECTS, data)
+            })
+            .finally(() => {
+                commit(SET_LOADING, false)
+            })
+    },
+    getFileReport({ commit }, payload) {
+        commit(SET_LOADING, true)
+        return http.projects.fileReport(payload)
+            .then(data => {
+                commit(SET_FILE_REPORT, data)
             })
             .finally(() => {
                 commit(SET_LOADING, false)
