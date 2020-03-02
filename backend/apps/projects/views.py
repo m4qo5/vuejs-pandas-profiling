@@ -9,7 +9,7 @@ from rest_framework import mixins, viewsets
 from rest_framework.decorators import api_view, renderer_classes
 from pandas_profiling import ProfileReport
 from rest_framework.response import Response
-from rest_framework.renderers import StaticHTMLRenderer
+from rest_framework.renderers import TemplateHTMLRenderer
 from django.core.files import File
 
 
@@ -41,12 +41,17 @@ class ProjectFileViewSet(mixins.ListModelMixin,
 
 
 @api_view(['GET'])
-@renderer_classes([StaticHTMLRenderer])
-def get_file_data(request):
-    file = ProjectFile.objects.get(pk=request.data['id'])
+@renderer_classes([TemplateHTMLRenderer])
+def get_file_data(request, id):
+    file = ProjectFile.objects.get(pk=id)
     df = pd.read_csv(file.file)
     profile = ProfileReport(df, title=file.description, html={'style':{'full_width':True}})
-    return Response(profile.to_html())
+    profile.to_file(output_file=f'static/report-{id}.html')
+    with open(f'static/report-{id}.html', 'rb') as f:
+        report = File(f)
+        file.report = report
+        file.save()
+    return Response(template_name=f'report-{id}.html')
 
 
 
