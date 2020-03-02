@@ -1,9 +1,9 @@
 <template>
-  <v-app id="inspire">
+  <div>
       <Layout />
       <DrawerList />
       <SingleProject/>
-  </v-app>
+  </div>
 </template>
 
 <script>
