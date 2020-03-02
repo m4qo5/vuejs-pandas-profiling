@@ -1,11 +1,7 @@
-ML Flow
+DS Flow
 =======
 
-Ml Flow is a website which allows you to keep your work clean
-
-<a href="https://github.com/vchaptsev/cookiecutter-django-vue">
-    <img src="https://img.shields.io/badge/built%20with-Cookiecutter%20Django%20Vue-blue.svg" />
-</a>
+DS Flow is a pet project which allows analyzing of the datasets through vue.js spa application.
 
 
 ## Development
