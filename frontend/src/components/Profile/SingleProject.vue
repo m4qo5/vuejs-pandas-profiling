@@ -8,7 +8,14 @@
                 <v-expansion-panel-header class="display-1 font-weight-thin">{{file.file_name}}</v-expansion-panel-header>
                 <v-expansion-panel-content>
                     Description: {{file.description}} <br/> Size: {{file.filesize}}
-                    <ReportDialog :file_id="file.id"/>
+                    <div v-if="file.report">
+                        <v-card-text class="font-weight-thin display-1 justify-center" center>
+                            Generated report
+                        </v-card-text>
+                        <iframe width="100%" :src="file.report" height="100%">
+                        </iframe>
+                    </div>
+                    <ReportDialog :file_id="file.id" v-else/>
                 </v-expansion-panel-content>
             </v-expansion-panel>
         </v-expansion-panels>
