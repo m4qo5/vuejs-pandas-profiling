@@ -10,16 +10,18 @@
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-toolbar>
+        <v-flex xs10 class="mx-auto">
         <v-progress-circular
-        style="margin: 0 auto;"
+        class="progress"
         v-if="loading"
         :size="70"
         :width="7"
         color="primary"
         indeterminate
         ></v-progress-circular>
+        </v-flex>
         <v-responsive :aspect-ratio="16/7" v-if="!loading">
-            <v-card-text class="font-weight-thin display-1 justify-center">
+            <v-card-text class="font-weight-thin display-1 justify-center" center>
                 Generated report
             </v-card-text>
             <iframe width="100%" :srcdoc="fileReport" height="100%">
@@ -59,3 +61,12 @@ import { mapGetters } from "vuex";
     }
   }
 </script>
+
+
+<style scoped>
+ .progress {
+    display: block;
+    width: 100px;
+    margin: 0 auto;
+}
+</style>
