@@ -5,6 +5,7 @@ from .models import Project, ProjectFile
 class ProjectFileListSerializer(serializers.ModelSerializer):
     file = serializers.SerializerMethodField()
     file_name = serializers.SerializerMethodField()
+    report = serializers.SerializerMethodField()
 
     class Meta:
         model = ProjectFile
@@ -27,6 +28,13 @@ class ProjectFileListSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         file_name = project_file.file.name
         return file_name
+    
+    def get_report(self, project_file):
+        request = self.context.get('request')
+        if project_file.report:
+            report = project_file.report.url
+            return request.build_absolute_uri(report)
+        return None
 
 
 class ProjectFileCreateSerializer(serializers.ModelSerializer):
