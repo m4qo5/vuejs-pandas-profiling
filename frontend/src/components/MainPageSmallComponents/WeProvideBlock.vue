@@ -32,8 +32,8 @@ export default {
   computed: {
     ...mapGetters(["steps", "stepsAreLoading"])
   },
-  async mounted() {
-    await this.$store.dispatch("getSteps");
+  mounted: function() {
+    this.$store.dispatch("getSteps");
   }
 };
 </script>

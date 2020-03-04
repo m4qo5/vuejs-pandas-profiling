@@ -70,8 +70,8 @@ export default {
         this.$router.push({ name: 'projectFiles', params: { id: project.id} })
       }
   },
-  async mounted() {
-    await this.$store.dispatch("getProjects");
+  mounted: function() {
+    this.$store.dispatch("getProjects");
   }
 };
 </script>
