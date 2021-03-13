@@ -3,7 +3,7 @@ DS Flow
 
 DS Flow is a training project which allows analyzing of the datasets through vue.js spa application.
 The main goal was to learn vue.js framework through development process. 
-Do not take this code seriously unless you're know what you doing.
+Do not take this code seriously unless you know what you're doing.
 It uses great [pandas-profiling](https://github.com/pandas-profiling/pandas-profiling) library for the dataset analysis.
 
 ## Example of the dataset analysis
